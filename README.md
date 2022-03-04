@@ -1,6 +1,7 @@
-# argparse
+# cli
 
-testing how to call functions based on subparser commands issued
+* how to set up a python app with cli
+* how to install a package that can be run from the shell
 
 ## install the package
 
@@ -10,7 +11,7 @@ source .venv/bin/activate
 
 pip install --upgrade pip
 
-pip install -r test_requirements.txt
+pip install -r requirements_test.txt
 
 pip install -e src
 ```
