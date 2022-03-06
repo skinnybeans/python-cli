@@ -3,11 +3,12 @@ import midnyte
 
 import midnyte.sample.ami
 import midnyte.sample.instances
+import midnyte.command
 
-def add_subcommand(subparsers, name, module):
-    parser = subparsers.add_parser(name, help=module.parser_help())
-    parser.set_defaults(module=module)
-    module.parser_setup(parser)
+def add_subcommand(subparsers, command: midnyte.command.CommandMixin):
+    parser = subparsers.add_parser(command.command_name(), help=command.command_help())
+    parser.set_defaults(command=command.command_execute)
+    command.command_setup(parser)
 
 def start():
     parser = argparse.ArgumentParser(description='Testing some arg parsing')
@@ -16,14 +17,13 @@ def start():
     subparsers = parser.add_subparsers()
     subparsers.required = True
 
-    add_subcommand(subparsers, 'ami', midnyte.sample.ami)
-    add_subcommand(subparsers, 'instances', midnyte.sample.instances)
+    # add_subcommand(subparsers, 'ami', midnyte.sample.ami)
+    add_subcommand(subparsers, midnyte.sample.instances.InstanceCommand())
+    add_subcommand(subparsers, midnyte.sample.ami.AmiCommand())
 
 
     args = parser.parse_args()
-    # print(args)
-    # getattr(args.module, 'execute')(args)
-    args.module.execute(args)
+    args.command(args)
 
 if __name__ == "__main__":
     start()

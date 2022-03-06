@@ -1,13 +1,22 @@
+import midnyte.command
 
 def get_amis():
     return [{"ami_id":"ami-1234"}]
+class AmiCommand(midnyte.command.CommandMixin):
+    def __init__(self):
+        pass
 
-def execute(arguments):
-    print(f'running ami parser with args: {arguments}')
+    def command_execute(self, arguments):
+        # print(f'running instances parser with args: {arguments}')
+        print(f'processing ami: {arguments.id}')
+        print(get_amis())
 
-def parser_help():
-    return "Basic module to help manipuate AMIs"
+    def command_help(self):
+        return('Here is some help for amis')
 
-def parser_setup(parser):
-    print("setting up parser for ami")
-    parser.add_argument('-id', help='ID of specific AMI', required=True)
+    def command_setup(self, parser):
+        print("setting up parser for ami")
+        parser.add_argument('-id', help='ID of specific ami', required=True)
+
+    def command_name(self):
+        return 'ami'
