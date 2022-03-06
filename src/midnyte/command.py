@@ -1,6 +1,4 @@
-'''Class used for setting up a cli command'''
-
-class CommandMixin:
+class CommandMixin():
     def command_execute():
         raise NotImplementedError("oops")
 

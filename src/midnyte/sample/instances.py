@@ -1,4 +1,3 @@
-from ast import arg
 import midnyte.command
 
 def get_instances():

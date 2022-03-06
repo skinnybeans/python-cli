@@ -1,5 +1,4 @@
 import argparse
-import midnyte
 
 import midnyte.sample.ami
 import midnyte.sample.instances
